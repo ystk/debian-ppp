@@ -1,3 +1,16 @@
+ppp (2.4.5-5.1) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Set Architecture to linux-any.  (Closes: #648345)
+
+ -- Robert Millan <rmh@debian.org>  Sun, 22 Apr 2012 16:25:45 +0200
+
+ppp (2.4.5-5) unstable; urgency=medium
+
+  * Updated debconf translation: da. (Closes: #601791)
+
+ -- Marco d'Itri <md@linux.it>  Wed, 19 Jan 2011 23:24:16 +0100
+
 ppp (2.4.5-4) unstable; urgency=low
 
   * Make sure to actually rebuild pppd for the udeb instead of using the

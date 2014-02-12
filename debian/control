@@ -7,7 +7,7 @@ Standards-Version: 3.9.1
 
 Package: ppp
 Section: admin
-Architecture: any
+Architecture: linux-any
 Depends: ${shlibs:Depends}, ${misc:Depends}, libpam-modules, libpam-runtime, procps
 Breaks: network-manager (<= 0.8.0.999-1), network-manager-pptp (<= 0.8.0.999-1), pppdcapiplugin (<= 1:3.9.20060704+dfsg.1-1)
 Description: Point-to-Point Protocol (PPP) - daemon
@@ -22,7 +22,7 @@ Description: Point-to-Point Protocol (PPP) - daemon
 Package: ppp-udeb
 XC-Package-Type: udeb
 Section: debian-installer
-Architecture: any
+Architecture: linux-any
 Depends: ${shlibs:Depends}, ${misc:Depends}, ethernet-card-detection, ppp-modules, di-utils
 Provides: configured-network
 XB-Installer-Menu-Item: 1700
