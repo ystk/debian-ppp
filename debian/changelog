@@ -1,3 +1,156 @@
+ppp (2.4.6-2) unstable; urgency=medium
+
+  * d/rules: Fix ppp-udeb module path by using a shell expression for PPPDDIR.
+  * Update Breaks for network-manager to (<< 0.9.8.8-7~). (Closes: #744814)
+  * Update Breaks for network-manager-pptp and pppdcapiplugin.
+  * Update lintian overrides to account for changed plugin path.
+
+ -- Chris Boot <debian@bootc.net>  Thu, 17 Apr 2014 22:19:23 +0100
+
+ppp (2.4.6-1) unstable; urgency=medium
+
+  * New upstream release. (Closes: #718873)
+  * Enable GPG signature checking for uscan:
+    - Add pgpsigurlmangle option to debian/watch
+    - Add debian/upstream/signing-key.asc
+    - Remove linitian override for debian-watch-may-check-gpg-signature
+
+ -- Chris Boot <debian@bootc.net>  Sun, 13 Apr 2014 23:22:19 +0100
+
+ppp (2.4.5+git20130610-4) unstable; urgency=medium
+
+  * Remove obsolete --update-rcd-params from dh_installinit. (Closes: #727162)
+  * Remove obsolete Build-Depends on quilt.
+  * Add systemd service file for ppp-dns: (Closes: #716864)
+    - Build-Depend on dh-systemd
+    - Use dh_installinit --name instead of --init-script
+    - Add dh_systemd_enable and dh_systemd_start to debian/rules
+    Thanks to Shawn Landden for providing a patch.
+  * Add LSB Description header to init script.
+  * Make init script source /lib/lsb/init-functions for systemd compatibility.
+  * Override a number of lintian tags:
+    - init.d-script-does-not-implement-optional-option etc/init.d/pppd-dns
+        status
+    - non-standard-dir-perm etc/chatscripts/ and etc/ppp/peers/
+    - package-contains-readme-for-other-platform-or-distro
+        usr/share/doc/ppp/README.win9x
+    - setuid-binary usr/sbin/pppd
+    - debian-watch-may-check-gpg-signature
+    See the lintian overrides files for reasoning.
+  * Add support for arbitrary interface naming: (Closes: #458646)
+    - Add debian/patches/ppp-2.4.2-ifname.diff based on openSUSE patch.
+  * Fix a potential buffer overflow in the radius plugin:
+    - Add debian/patches/ppp-2.4.4-strncatfix.patch from openSUSE.
+  * Update debian/copyright:
+    - Add myself to the list of maintainers
+    - Change reference to GPL symlink license to GPL-2
+  * Update Standards-Version to 3.9.5 (no changes required).
+  * Refresh debian/patches/cifdefroute.dif from OpenSUSE (Closes: #425163) and
+    add patch header.
+
+ -- Chris Boot <debian@bootc.net>  Mon, 27 Jan 2014 22:17:11 +0000
+
+ppp (2.4.5+git20130610-3) unstable; urgency=medium
+
+  * Revisit debian/rules and Makefile patches due to build breakage exposed by
+    the addition of hardening build flags. (Closes: #734458)
+    - Update debian/rules to pass COPTS/LDOPTS instead of CFLAGS/LDFLAGS.
+    - Overhaul makefiles_cleanup patch. This now makes far fewer changes to the
+      upstream Makefiles than previously.
+    - Refresh no_crypt_hack, pppdump_use_zlib, pppoatm_resolver_light and
+      zzz_config patches due to significant Makefile changes.
+    Thanks to Marco d'Itri for the bulk of the Makefile work.
+
+ -- Chris Boot <debian@bootc.net>  Tue, 07 Jan 2014 17:54:08 +0000
+
+ppp (2.4.5+git20130610-2) unstable; urgency=low
+
+  [ David Prévot ]
+  * Add missing prepending underscore in templates. Closes: #686255
+
+  [ Debconf translation updates ]
+  * Chinese — China, Zhi Li.
+  * Chinese — Taiwan, Ｖ字龍.
+  * French, David Prévot.
+  * Turkish, Deniz Bahadır GÜR.
+  * Vietnamese, Nguyễn Vũ Hưng.
+  * Slovak, Slavko (Closes: #686273)
+  * Danish, Joe Hansen (Closes: #686289)
+  * Russian, Yuri Kozlov (Closes: #686354)
+  * Basque, Dooteo (Closes: #686415)
+  * Swedish, Martin Bagge. (Closes: #686443)
+  * Romanian, Andrei Popescu. (Closes: #686556)
+  * Polish, Michał Kułach. (Closes: #686603)
+  * German, Chris Leick. (Closes: #686609)
+  * Dutch, Jeroen Schot. (Closes: #686660)
+  * Portuguese, Carlos Lisboa. (Closes: #686700)
+  * Brazilian Portuguese, J. S. Júnior. (Closes: #686713)
+  * Japanese, victory. (Closes: #686721)
+  * Spanish, Rafael Ernesto Rivas, Javier Fernandez-Sanguino Peña.
+    (Closes: #686722, #686769)
+  * Czech, Michal Šimůnek. (Closes: #687183)
+
+  [ Chris Boot ]
+  * Incorporate David Prévot's debconf translation updates patch from #686255.
+  * Fix lintian warnings:
+    - debian-rules-missing-recommended-target build-arch
+    - debian-rules-missing-recommended-target build-indep
+    - package-would-benefit-from-build-arch-targets
+  * Add radius-config.c-unkown-typo patch to fix spelling-error-in-binary
+    lintian warning.
+  * Add secure-card-interpreter-fix patch to fix
+    example-wrong-path-for-interpreter lintian warning.
+  * Remove always_setsid patch. (Closes: #598551)
+  * Add Vcs-Browser and Vcs-Git fields pointing to collab-maint/pkg-ppp.git.
+  * Enable hardening build flags. (Closes: #658181)
+  * Add dh_lintian to debian/rules so we can use overrides.
+
+ -- Chris Boot <debian@bootc.net>  Mon, 06 Jan 2014 22:05:51 +0000
+
+ppp (2.4.5+git20130610-1) unstable; urgency=low
+
+  * New upstream git snapshot (8d69424). (Closes: #615666, #674207, #684164)
+  * Move extra/ directory into debian/ directory.
+  * Remove patches applied upstream:
+    - git-20100307 (e753795..cab5861)
+    - pppoatm_no_modprobe (52cd43a)
+    - use_system_logwtmp (fixed differently in 9617a7e)
+    - dont-exit-pado-timeout (fixed differently in 225361d)
+    - fix_warnings (fixed in 0b61182)
+    - man_syntax_errors (fixed in d16a398 and a7c3489)
+    - documentation_typos (fixed in 8dea1b9, 9e05a25 and b5b8898)
+    - fix_null_pppdb (3747616)
+    - radius_enanchements (fixed in 2f581cd)
+    - remove-old-version-of-Linux-if_pppol2tp-h.patch (c41092d)
+  * Refresh or edit patches to remove fuzz:
+    - 018_ip-up_option.diff
+    - cifdefroute.dif
+    - no_crypt_hack
+    - setenv_call_file
+    - zzz_config
+  * Remove patches that were disabled in 2.4.5-1:
+    - pppoatm_fix_mtu
+    - pppoe_fixinclude
+  * Add inactive patch to series file added in 2.4.5-1:
+    - ipv6-accept-remote
+  * Switch to dpkg-source 3.0 (quilt) format.
+  * Add Homepage field to debian/control.
+  * Add myself to Uploaders.
+  * Fix lintian warnings:
+    - xc-package-type-in-debian-control line 25
+    - binary-control-field-duplicates-source field "section" in package ppp
+
+ -- Chris Boot <debian@bootc.net>  Mon, 21 Oct 2013 22:49:34 +0100
+
+ppp (2.4.5-5.2) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Replace patch update_if_pppol2tp with
+    remove-old-version-of-Linux-if_pppol2tp-h.patch to fix build failures with
+    kernels since wheezy. (Closes: #707538)
+
+ -- Chris Boot <bootc@bootc.net>  Tue, 28 May 2013 15:56:31 +0100
+
 ppp (2.4.5-5.1) unstable; urgency=low
 
   * Non-maintainer upload.
