@@ -1,3 +1,12 @@
+ppp (2.4.5-4+deb6u1) squeeze-lts; urgency=high
+
+  * Non-maintainer upload.
+  * Backport fix for CVE-2014-3158 (Bug: 762789 integer overflow in 
+    option parsing) from 
+    https://github.com/paulusmack/ppp/commit/7658e8257183f062dc01f87969c140707c7e52cb
+
+ -- Andrew Bartlett <abartlet+debian@catalyst.net.nz>  Wed, 15 Oct 2014 23:00:47 +0000
+
 ppp (2.4.5-4) unstable; urgency=low
 
   * Make sure to actually rebuild pppd for the udeb instead of using the

@@ -1,5 +1,6 @@
 # pulled from upstream
 git-20100307
+CVE-2014-3158.patch
 
 # to be merged upstream
 pppoatm_no_modprobe
