@@ -1,3 +1,11 @@
+ppp (2.4.5-4+deb6u2) squeeze-lts; urgency=high
+
+  * Non-maintainer upload by the Squeeze LTS Team.
+  * Fix CVE-2015-3310: buffer overflow which may lead to DoS (Closes: #782450).
+    (thanks to Emanuele Rocca for the patch).
+
+ -- Thorsten Alteholz <debian@alteholz.de>  Sun, 19 Apr 2015 16:00:47 +0200
+
 ppp (2.4.5-4+deb6u1) squeeze-lts; urgency=high
 
   * Non-maintainer upload.
