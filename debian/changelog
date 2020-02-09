@@ -1,3 +1,15 @@
+ppp (2.4.6-3.1+deb8u1) jessie-security; urgency=high
+
+  * Non-maintainer upload by the LTS team.
+  * Fix CVE-2020-8597:
+    Ilja Van Sprundel discovered a buffer overflow vulnerability in ppp,
+    the Point-to-Point Protocol daemon. When receiving an EAP Request message
+    in client mode, an attacker was able to overflow the rhostname array by
+    providing a very long name. This issue is already mitigated by Debian's
+    hardening build flags.
+
+ -- Markus Koschany <apo@debian.org>  Sun, 09 Feb 2020 15:18:36 +0100
+
 ppp (2.4.6-3.1) unstable; urgency=high
 
   * Non-maintainer upload.

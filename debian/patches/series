@@ -44,3 +44,4 @@ resolv.conf_no_log
 zzz_config
 secure-card-interpreter-fix
 rc_mksid-no-buffer-overflow
+CVE-2020-8597.patch
